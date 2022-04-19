@@ -1,0 +1,1 @@
+const taskButton = document.querySelector('.add-task')
