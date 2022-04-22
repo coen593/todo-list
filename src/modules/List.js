@@ -1,10 +1,10 @@
-Module.exports = class List {
-    constructor(projects) {
-        this.projects = projects
+export default class List {
+    constructor() {
+        this.projects = []
     }
 
     addProject(p) {
-        this.projects.push(p)
+        return this.projects.push(p)
     }
 
     getProjects() {

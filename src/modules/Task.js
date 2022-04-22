@@ -1,4 +1,4 @@
-module.exports = class Task {
+export default class Task {
     constructor(title, description, dueDate, priority, project) {
         this.title = title
         this.description = description

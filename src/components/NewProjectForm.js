@@ -1,4 +1,6 @@
-import { closeForm } from '../modules/UI.js'
+import { closeForm } from '../modules/UI'
+import Project from '../modules/Project'
+import Storage from '../modules/Storage'
 const makeElement = require('./makeElement.js')
 
 export function newProjectForm() {
@@ -23,12 +25,14 @@ export function newProjectForm() {
     form.appendChild(nameLabel)
     form.appendChild(name)
 
-    const button = makeElement('button', ['btn', 'new-task-btn'], 'Add Task', {
+    const button = makeElement('button', ['btn', 'new-task-btn'], 'Add Project', {
         'type': 'submit',
         'id': 'new-task-btn'
     })
     form.appendChild(button)
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault()
+        Storage.addProject(new Project(name.value))
         closeForm()
     })
 
