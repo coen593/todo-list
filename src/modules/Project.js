@@ -16,16 +16,16 @@ module.exports = class Project {
         return this.tasks
     }
 
-    getTask(task) {
-        return this.tasks.find(t => task == t)
+    getTask(t) {
+        return this.tasks.find(task => task == t)
     }
 
     addTask(task) {
         tasks.push(task)
     }
 
-    removeTask(task) {
-        const index = tasks.findIndex(t => task == t)
+    removeTask(t) {
+        const index = tasks.findIndex(task => task == t)
         this.tasks.splice(index, 1)
     }
 }
