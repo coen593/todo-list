@@ -57,13 +57,24 @@ export function newTaskForm() {
     form.appendChild(priorityLabel)
     form.appendChild(priority)
 
+    const message = makeElement('p', ['error-message'], 'This task name is already taken!', {
+        'id': 'task-name-error',
+    })
+    message.style.visibility='hidden'
+    form.appendChild(message)
+
     const button = makeElement('button', ['btn', 'new-task-btn'], 'Add Task', {
         'type': 'submit',
         'id': 'new-task-btn'
     })
     form.appendChild(button)
-    button.addEventListener('click', () => {
-        closeForm()
+    button.addEventListener('click', (e) => {
+        e.preventDefault()
+        if (Storage.addTask(name.value) == 0) {
+            message.style.visibility='visible'
+        } else {
+            closeForm()
+        }
     })
 
     return form
