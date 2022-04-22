@@ -1,7 +1,13 @@
-const newTaskForm = require('../components/NewTaskForm.js')
+import {newTaskForm} from '../components/NewTaskForm.js'
+import {navBar} from '../components/NavBar.js'
 
-const container = document.querySelector('.container')
-const taskButton = document.querySelector('#add-task')
+// const taskButton = document.querySelector('#add-task')
+// container.appendChild(navBar())
+// Module function to create basic UI
+const init = (() => {
+    const container = document.querySelector('.container')
+    container.appendChild(navBar())
+})()
 
 const addTask = (e) => {
     const formData = new FormData(e.target);
@@ -10,8 +16,15 @@ const addTask = (e) => {
 }
 
 const showTaskForm = () => {
+    const container = document.querySelector('.container')
     container.appendChild(newTaskForm())
 }
 
-taskButton.addEventListener('click', () => showTaskForm())
+const closeTaskForm = () => {
+    const form = document.querySelector('.new-task-form')
+    form.remove()
+}
+
+export {showTaskForm, closeTaskForm}
+
 // taskForm.onsubmit = addTask

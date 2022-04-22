@@ -1,10 +1,16 @@
+import { closeTaskForm } from '../modules/UI.js'
 const makeElement = require('./makeElement.js')
 
-module.exports = function newTaskForm() {
+export function newTaskForm() {
     const form = makeElement('form',['new-task-form'])
-    console.log(form)
+
     const legend = makeElement('legend',null,'Please add your new task!')
     form.appendChild(legend)
+
+    const closeIcon = new Image()
+    closeIcon.src = './static/x.svg'
+    form.appendChild(closeIcon)
+    closeIcon.addEventListener('click', () => closeTaskForm())
 
     const nameLabel = makeElement('label',null,'Task Name',{
         'for': 'new-task-name'
@@ -56,6 +62,9 @@ module.exports = function newTaskForm() {
         'id': 'new-task-btn'
     })
     form.appendChild(button)
+    button.addEventListener('click', () => {
+        closeTaskForm()
+    })
 
     return form
 }
