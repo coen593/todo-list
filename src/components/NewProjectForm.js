@@ -25,6 +25,12 @@ export function newProjectForm() {
     form.appendChild(nameLabel)
     form.appendChild(name)
 
+    const message = makeElement('p', ['error-message'], 'This project name is already taken!', {
+        'id': 'project-name-error',
+    })
+    message.style.visibility='hidden'
+    form.appendChild(message)
+
     const button = makeElement('button', ['btn', 'new-task-btn'], 'Add Project', {
         'type': 'submit',
         'id': 'new-task-btn'
@@ -32,8 +38,11 @@ export function newProjectForm() {
     form.appendChild(button)
     button.addEventListener('click', (e) => {
         e.preventDefault()
-        Storage.addProject(new Project(name.value))
-        closeForm()
+        if (Storage.addProject(name.value) == 0) {
+            message.style.visibility='visible'
+        } else {
+            closeForm()
+        }
     })
 
     return form

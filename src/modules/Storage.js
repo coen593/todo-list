@@ -15,9 +15,22 @@ export default class Storage {
         return list
     }
 
-    static addProject(p) {
+    static getProjects() {
         const list = Storage.getList()
-        list.addProject(p, [])
-        Storage.saveList(list)
+        return list.getProjects()
     }
+
+    static addProject(p) {
+        const projects = Storage.getProjects()
+        for (let project of projects) {
+            if (project.title == p) return 0
+        }
+        const list = Storage.getList()
+        const project = new Project(p)
+        list.addProject(project, [])
+        Storage.saveList(list)
+        return 1
+    }
+
+
 }
