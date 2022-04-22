@@ -4,7 +4,6 @@ module.exports = class Task {
         this.description = description
         this.dueDate = dueDate
         this.priority = priority
-        this.project = project
     }
 
     setTitle(t) {
@@ -37,13 +36,5 @@ module.exports = class Task {
 
     getPriority() {
         return this.priority
-    }
-
-    setProject(p) {
-        this.project = p
-    }
-
-    getProject() {
-        return this.project
     }
 }
