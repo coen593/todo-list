@@ -20,12 +20,13 @@ export function newProjectForm() {
     const name = makeElement('input', ['new-task-input'], null, {
         'id': 'new-task-name',
         'required': 'true',
-        'type': 'text'
+        'type': 'text',
+        'name': 'name'
     })
     form.appendChild(nameLabel)
     form.appendChild(name)
 
-    const message = makeElement('p', ['error-message'], 'This project name is already taken!', {
+    const message = makeElement('p', ['name-taken','error-message'], 'This project name is already taken!', {
         'id': 'project-name-error',
     })
     message.style.visibility='hidden'

@@ -1,4 +1,5 @@
-import { closeForm } from '../modules/UI.js'
+import { closeForm } from '../modules/UI'
+import Storage from '../modules/Storage'
 const makeElement = require('./makeElement.js')
 
 export function newTaskForm() {
@@ -18,7 +19,8 @@ export function newTaskForm() {
     const name = makeElement('input', ['new-task-input'], null, {
         'id': 'new-task-name',
         'required': 'true',
-        'type': 'text'
+        'type': 'text',
+        'name': 'name'
     })
     form.appendChild(nameLabel)
     form.appendChild(name)
@@ -28,7 +30,8 @@ export function newTaskForm() {
     })
     const description = makeElement('textarea', ['new-task-input'], null, {
         'id': 'new-task-description',
-        'rows': '6'
+        'rows': '6',
+        'name': 'description'
     })
     form.appendChild(descriptionLabel)
     form.appendChild(description)
@@ -38,10 +41,30 @@ export function newTaskForm() {
     })
     const date = makeElement('input', ['new-task-input'], null, {
         'id': 'new-task-date',
-        'type': 'date'
+        'type': 'date',
+        'name': 'date'
     })
     form.appendChild(dateLabel)
     form.appendChild(date)
+
+    const projectLabel = makeElement('label',null,'Project', {
+        'for': 'Project'
+    })
+    const project = makeElement('select', ['new-task-input'], null, {
+        'id': 'new-task-project',
+        'name': 'project'
+    })
+    const projects = Storage.getProjects()
+    const option = makeElement('option', null, '-- no project --', {'value': '_no-project'})
+    project.appendChild(option)
+    for (let p of projects) {
+        if (p.title !== '_no-project') {
+            const option = makeElement('option', null, p.title, {'value': p.title})
+            project.appendChild(option)
+        }
+    }
+    form.appendChild(projectLabel)
+    form.appendChild(project)
 
     const priorityLabel = makeElement('label',null,'Priority',{
         'for': 'new-task-priority'
@@ -57,7 +80,7 @@ export function newTaskForm() {
     form.appendChild(priorityLabel)
     form.appendChild(priority)
 
-    const message = makeElement('p', ['error-message'], 'This task name is already taken!', {
+    const message = makeElement('p', ['name-taken','error-message'], 'This task name is already taken!', {
         'id': 'task-name-error',
     })
     message.style.visibility='hidden'
@@ -68,9 +91,10 @@ export function newTaskForm() {
         'id': 'new-task-btn'
     })
     form.appendChild(button)
-    button.addEventListener('click', (e) => {
+    form.addEventListener('submit', (e) => {
         e.preventDefault()
-        if (Storage.addTask(name.value) == 0) {
+        const data = Object.fromEntries(new FormData(e.target))
+        if (Storage.addTask(data) == 0) {
             message.style.visibility='visible'
         } else {
             closeForm()

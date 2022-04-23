@@ -12,6 +12,10 @@ export default class Project {
         this.title = title
     }
     
+    setTasks(tasks) {
+        this.tasks = tasks
+    }
+
     getTasks() {
         return this.tasks
     }
@@ -21,7 +25,7 @@ export default class Project {
     }
 
     addTask(task) {
-        tasks.push(task)
+        return this.tasks.push(task)
     }
 
     removeTask(t) {

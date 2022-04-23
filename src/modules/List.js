@@ -7,12 +7,16 @@ export default class List {
         return this.projects.push(p)
     }
 
+    setProjects(projects) {
+        this.projects = projects
+    }
+
     getProjects() {
         return this.projects
     }
 
     getProject(p) {
-        return this.projects.find(project => project == p)
+        return this.projects.find(project => project.title == p)
     }
 
     removeProject(p) {

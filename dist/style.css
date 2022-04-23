@@ -64,7 +64,7 @@ form {
     transform: translate(-50%,-50%);
     padding: 20px;
     display: grid;
-    grid-template-columns: 23;
+    grid-template-columns: 30% 50% 20%;
     justify-content: center;
     column-gap: 10px;
     align-items: center;
@@ -90,15 +90,24 @@ form textarea {
     resize: vertical;
 }
 
-form input[type='date'] {
+form input[type='date'],
+form select {
     grid-row-start: 7;
 }
 
-form select {
-    grid-column: 2 / 4;
+form #new-task-project {
+    grid-column: 2 / 3;
+}
+
+form #new-task-priority {
+    grid-column: 3 / 4;
 }
 
 form button {
     grid-column: 1 / 4;
     justify-self: center
+}
+
+#task-name-error {
+    grid-column: 1 / 4;
 }
