@@ -5,6 +5,7 @@ import { contentSection } from '../components/ContentSection'
 import { newProjectForm } from '../components/NewProjectForm'
 import { taskHeader } from '../components/TaskHeader'
 import { tasksShown } from '../components/Tasks'
+import { projectList } from '../components/ProjectList'
 import Storage from '../modules/Storage'
 
 // Module function to create basic UI
@@ -38,12 +39,26 @@ const closeForm = () => {
     form.remove()
 }
 
+const emptyElement = element => {
+    while (element.firstChild) {
+        element.removeChild(element.firstChild)
+    }
+}
+
+const showSidebarProjects = () => {
+    const projects = Storage.getProjects()
+    const list = document.querySelector('.project-list')
+    emptyElement(list)
+    projectList(projects, list)
+}
+
 const createTaskView = (type, filter) => {
     const content = document.querySelector('.content')
+    emptyElement(content)
     const header = taskHeader('all')
     const tasks = tasksShown(Storage.showTasks('all'))
     content.appendChild(header)
     content.appendChild(tasks)
 }
 
-export { showTaskForm, showProjectForm, closeForm, createTaskView }
+export { showTaskForm, showProjectForm, closeForm, createTaskView, showSidebarProjects }

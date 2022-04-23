@@ -1,4 +1,4 @@
-import { closeForm } from '../modules/UI'
+import { closeForm, showSidebarProjects } from '../modules/UI'
 import Storage from '../modules/Storage'
 const makeElement = require('../helpers/makeElement.js')
 
@@ -42,6 +42,7 @@ export function newProjectForm() {
             message.style.visibility='visible'
         } else {
             closeForm()
+            showSidebarProjects()
         }
     })
 

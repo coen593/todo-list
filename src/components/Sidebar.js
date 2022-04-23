@@ -1,5 +1,4 @@
 import { showTaskForm, showProjectForm } from '../modules/UI'
-import Storage from '../modules/Storage'
 const makeElement = require('../helpers/makeElement.js')
 
 export function sidebar() {
@@ -18,18 +17,7 @@ export function sidebar() {
 
     const projectHeader = makeElement('h3', null, 'Projects')
     side.appendChild(projectHeader)
-
     const projectList = makeElement('ul', ['project-list'])
-    const projects = Storage.getProjects()
-    for (let project of projects) {
-        if (project.title !== '_no-project') {
-            const p = makeElement('li',['project-link'], project.title)
-            projectList.appendChild(p)
-        }
-    }
-    projectList.appendChild(makeElement('hr'))
-    const miscProject = makeElement('li', ['project-link','misc-project-link'], 'Miscellaneous projects')
-    projectList.appendChild(miscProject)
     side.appendChild(projectList)
 
     return side

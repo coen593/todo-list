@@ -1,4 +1,4 @@
-import UI from './modules/UI'
+import { createTaskView, showSidebarProjects } from './modules/UI'
 import Storage from './modules/Storage'
 
 const initStorage = (() => {
@@ -7,4 +7,9 @@ const initStorage = (() => {
         console.log('no length')
         Storage.addProject('_no-project')
     }
+})()
+
+const initUI = (() => {
+    createTaskView('all')
+    showSidebarProjects()
 })()
