@@ -58,4 +58,16 @@ export default class Storage {
         Storage.saveList(list)
         return 1
     }
+
+    static showTasks(type, filter) {
+        const list = Storage.getList()
+        let tasks = []
+        if (type == 'all') {
+            const projects = this.getProjects()
+            projects.forEach(project => {
+                tasks = [...tasks,...project.getTasks()]
+            })
+        }
+        return tasks
+    }
 }

@@ -1,15 +1,18 @@
 import { newTaskForm } from '../components/NewTaskForm'
 import { header } from '../components/Header'
 import { sidebar } from '../components/Sidebar'
-import { content } from '../components/Content'
+import { contentSection } from '../components/ContentSection'
 import { newProjectForm } from '../components/NewProjectForm'
+import { taskHeader } from '../components/TaskHeader'
+import { tasksShown } from '../components/Tasks'
+import Storage from '../modules/Storage'
 
 // Module function to create basic UI
 const init = (() => {
     const container = document.querySelector('.container')
     container.appendChild(header())
     container.appendChild(sidebar())
-    container.appendChild(content())
+    container.appendChild(contentSection())
 })()
 
 const showTaskForm = () => {
@@ -35,6 +38,12 @@ const closeForm = () => {
     form.remove()
 }
 
-export { showTaskForm, showProjectForm, closeForm }
+const createTaskView = (type, filter) => {
+    const content = document.querySelector('.content')
+    const header = taskHeader('all')
+    const tasks = tasksShown(Storage.showTasks('all'))
+    content.appendChild(header)
+    content.appendChild(tasks)
+}
 
-// taskForm.onsubmit = addTask
+export { showTaskForm, showProjectForm, closeForm, createTaskView }
