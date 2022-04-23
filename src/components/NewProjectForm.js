@@ -1,5 +1,4 @@
 import { closeForm } from '../modules/UI'
-import Project from '../modules/Project'
 import Storage from '../modules/Storage'
 const makeElement = require('../helpers/makeElement.js')
 
