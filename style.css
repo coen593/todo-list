@@ -57,6 +57,39 @@ table {
     --tertiary: #ADA076;
 }
 
+/* General main layout */
+html, body {
+    height: 100vh;
+}
+.container {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 6em auto;
+    height: 100vh;
+}
+
+/* Nav layout */
+header {
+    grid-column: 1 / 3;
+    background-color: var(--secondary);
+    display: flex;   
+}
+
+header .header-logo {
+    font-size: 3em;
+    color: var(--primary);
+    margin: auto;
+    margin-left: 20px;
+}
+
+/* Sidebar style */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--tertiary);
+}
+
+/* Form style */
 form {
     position: absolute;
     top: 50%;
