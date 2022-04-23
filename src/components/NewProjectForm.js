@@ -1,7 +1,7 @@
 import { closeForm } from '../modules/UI'
 import Project from '../modules/Project'
 import Storage from '../modules/Storage'
-const makeElement = require('./makeElement.js')
+const makeElement = require('../helpers/makeElement.js')
 
 export function newProjectForm() {
     const form = makeElement('form',['new-project-form'])

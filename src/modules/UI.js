@@ -1,18 +1,16 @@
-import { newTaskForm } from '../components/NewTaskForm.js'
-import { navBar } from '../components/NavBar.js'
-import { newProjectForm } from '../components/NewProjectForm.js'
+import { newTaskForm } from '../components/NewTaskForm'
+import { header } from '../components/Header'
+import { sidebar } from '../components/Sidebar'
+import { content } from '../components/Content'
+import { newProjectForm } from '../components/NewProjectForm'
 
 // Module function to create basic UI
 const init = (() => {
     const container = document.querySelector('.container')
-    container.appendChild(navBar())
+    container.appendChild(header())
+    container.appendChild(sidebar())
+    container.appendChild(content())
 })()
-
-const addTask = (e) => {
-    const formData = new FormData(e.target);
-    const formProps = Object.fromEntries(formData);
-    console.log(formProps)
-}
 
 const showTaskForm = () => {
     const container = document.querySelector('.container')
