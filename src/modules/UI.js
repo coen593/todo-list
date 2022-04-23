@@ -55,8 +55,8 @@ const showSidebarProjects = () => {
 const createTaskView = (type, filter) => {
     const content = document.querySelector('.content')
     emptyElement(content)
-    const header = taskHeader('all')
-    const tasks = tasksShown(Storage.showTasks('all'))
+    const header = taskHeader(type, filter)
+    const tasks = tasksShown(Storage.showTasks(type, filter))
     content.appendChild(header)
     content.appendChild(tasks)
 }

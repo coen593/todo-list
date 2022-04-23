@@ -67,7 +67,9 @@ export default class Storage {
             projects.forEach(project => {
                 tasks = [...tasks,...project.getTasks()]
             })
-        }
+        } else if (type == 'p') {
+            tasks = filter.tasks
+        }  
         return tasks
     }
 }
