@@ -2,8 +2,6 @@ import { newTaskForm } from '../components/NewTaskForm.js'
 import { navBar } from '../components/NavBar.js'
 import { newProjectForm } from '../components/NewProjectForm.js'
 
-// const taskButton = document.querySelector('#add-task')
-// container.appendChild(navBar())
 // Module function to create basic UI
 const init = (() => {
     const container = document.querySelector('.container')

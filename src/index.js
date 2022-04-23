@@ -1,4 +1,10 @@
-const UI = require('./modules/UI.js')
-const Storage = require('./modules/Storage.js')
+import UI from './modules/UI'
+import Storage from './modules/Storage'
 
-let tester = Storage.test
+const initStorage = (() => {
+    const list = Storage.getList()
+    if (!list.projects.length) {
+        Storage.addProject('_no-project')
+    }
+    Storage.saveList(list)
+})()
