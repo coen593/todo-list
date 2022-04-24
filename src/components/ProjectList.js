@@ -1,5 +1,5 @@
 const makeElement = require('../helpers/makeElement.js')
-import {createTaskView} from '../modules/UI'
+import { createTaskView } from '../modules/UI'
 
 export function projectList(projects, projectList) {
 

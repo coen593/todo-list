@@ -61,4 +61,13 @@ const createTaskView = (type, filter) => {
     content.appendChild(tasks)
 }
 
-export { showTaskForm, showProjectForm, closeForm, createTaskView, showSidebarProjects }
+const toggleItemActive = item => item.classList.toggle('active')
+
+export {
+    showTaskForm, 
+    showProjectForm, 
+    closeForm, 
+    createTaskView, 
+    showSidebarProjects,
+    toggleItemActive
+}
