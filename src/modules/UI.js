@@ -63,11 +63,16 @@ const createTaskView = (type, filter) => {
 
 const toggleItemActive = item => item.classList.toggle('active')
 
+const toggleTaskCheck = task => {
+    Storage.setTaskDone(task)
+}
+
 export {
     showTaskForm, 
     showProjectForm, 
     closeForm, 
     createTaskView, 
     showSidebarProjects,
-    toggleItemActive
+    toggleItemActive,
+    toggleTaskCheck
 }

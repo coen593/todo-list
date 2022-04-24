@@ -1,7 +1,7 @@
 export default class Project {
-    constructor(title, tasks) {
+    constructor(title) {
         this.title = title
-        this.tasks = tasks
+        this.tasks = []
     }
 
     getProject() {
@@ -21,6 +21,7 @@ export default class Project {
     }
 
     getTask(t) {
+        console.log('x')
         return this.tasks.find(task => task == t)
     }
 

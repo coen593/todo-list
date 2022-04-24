@@ -34,6 +34,18 @@ export default class Storage {
         return list.getProject(p)
     }
 
+    static getTask(t) {
+        const projects = Storage.getProjects()
+        for (let project of projects) {
+            const tasks = project.getTasks()
+            for (let task of tasks) {
+                if (task.title == t.title && project.title == task.project) {
+                    return task
+                }
+            }
+        }
+    }
+
     static addProject(p) {
         const projects = Storage.getProjects()
         for (let project of projects) {
@@ -53,7 +65,7 @@ export default class Storage {
         for (let task of tasks) {
             if (task.title == t.name) return 0
         }
-        const task = new Task(t.name, t.description, t.date, t.priority)
+        const task = new Task(t.name, t.description, t.date, t.priority, t.project)
         project.addTask(task)
         Storage.saveList(list)
         return 1
@@ -71,5 +83,46 @@ export default class Storage {
             tasks = filter.tasks
         }  
         return tasks
+    }
+
+    static getProjectTaskIndex = task => {
+        const projects = Storage.getProjects()
+        let p, t
+        for (let i = 0; i < projects.length; i++) {
+            if (projects[i].title = task.project) {
+                p = i
+            }
+        }
+        for (let i = 0; i < projects[p].tasks.length; i++) {
+            if (projects[p].tasks[i].title == task.title) {
+                t = i
+            }
+        }
+        return { t, p }
+    }
+
+    static setTaskDone(doneTask) {
+        let list = Storage.getList()
+        // console.log
+        // const task = Storage.getTask(t)
+        // console.log(task)
+        // task.setDone()
+        // console.log(task)
+        // let project
+        // for (let p of list.projects) {
+        //     if (doneTask.project == p.title) {
+        //         project = p
+        //     }
+        // }
+        // let task
+        // for (let t of project.tasks) {
+        //     if (t.title == doneTask.title) {
+        //         task = doneTask
+        //     }
+        // }
+        
+        const { t, p } = Storage.getProjectTaskIndex(doneTask)
+        list.projects[p].tasks[t].setDone()
+        Storage.saveList(list)        
     }
 }

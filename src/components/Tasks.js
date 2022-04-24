@@ -1,4 +1,4 @@
-import { toggleItemActive } from '../modules/UI.js'
+import { toggleItemActive, toggleTaskCheck } from '../modules/UI.js'
 const makeElement = require('../helpers/makeElement.js')
 
 export function tasksShown(tasks) {
@@ -10,9 +10,10 @@ export function tasksShown(tasks) {
         const taskRight = makeElement('div', ['task-right'])
         const taskBottom = makeElement('div', ['task-bottom'])
 
-        const src = task.done ? './static/checked.svg' : './static/unchecked.svg'
-        const check = makeElement('img',['item-check'],null,{'src': src, 'alt': `Checkbox ${task.title}`})
+        const check = makeElement('img',['item-check'],null,{'src': './static/checked.svg', 'alt': `Checkbox ${task.title}`})
+        const uncheck = makeElement('img',['item-uncheck'],null,{'src': './static/unchecked.svg', 'alt': `Checkbox ${task.title}`})
         taskLeft.appendChild(check)
+        taskLeft.appendChild(uncheck)
 
         const title = makeElement('span', ['item-text'], task.title)
         taskLeft.appendChild(title)
@@ -31,12 +32,26 @@ export function tasksShown(tasks) {
 
         const priority = makeElement('span', ['item-priority'], `Priority: ${task.priority}`)
         taskBottom.appendChild(priority)
+        
+        const projectText = task.project == '_no-project' ? '' :`Project: ${task.project}`
+        const project = makeElement('span', ['item-project'], projectText)
+        taskBottom.appendChild(project)
 
         item.appendChild(taskLeft)
         item.appendChild(taskRight)
         item.appendChild(taskBottom)
         list.appendChild(item)
+
         item.addEventListener('click', function() {toggleItemActive(this)})
+        check.addEventListener('click', () => {
+            item.classList.toggle('done')
+            toggleTaskCheck(task)
+            
+        })
+        uncheck.addEventListener('click', function() {
+            item.classList.toggle('done')
+            toggleTaskCheck(task)
+        })
     }
     return list
 }
