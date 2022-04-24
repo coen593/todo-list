@@ -102,14 +102,30 @@ header .header-logo {
 .content li {
     padding: 5px 0;
     border-top: var(--primary) solid 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.content li:nth-child(2n) {
+.task-item>* {
+    display: flex;
+    align-items: center;
+}
+
+.task-item .task-right {
+    justify-content: end;
+}
+
+.content li:nth-child(2n+1) {
     background-color: rgb(221, 240, 247);
 }
 
 .content li:first-child {
     border: none;
+}
+
+.content li img {
+    height: 20px;
 }
 
 /* Form style */

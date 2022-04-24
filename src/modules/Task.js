@@ -4,6 +4,7 @@ export default class Task {
         this.description = description
         this.dueDate = dueDate
         this.priority = priority
+        this.done = false
     }
 
     setTitle(t) {
@@ -36,5 +37,9 @@ export default class Task {
 
     getPriority() {
         return this.priority
+    }
+
+    setDone() {
+        this.done = !this.done
     }
 }
