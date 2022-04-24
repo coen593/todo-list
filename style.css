@@ -49,7 +49,7 @@ table {
 
 /* Non Meyer general styling below */
 :root {
-    font-size: 16px;
+    font-size: 18px;
     --primary: #354985;
     --primary-alt: #2C4696;
     --clashing: #f0698B;
@@ -63,7 +63,7 @@ html, body {
 }
 .container {
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 25% 75%;
     grid-template-rows: 6em auto;
     height: 100vh;
 }
@@ -87,6 +87,29 @@ header .header-logo {
     display: flex;
     flex-direction: column;
     background-color: var(--tertiary);
+}
+
+/* Content style */
+.content {
+    padding: 20px;
+}
+
+.content h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.content li {
+    padding: 5px 0;
+    border-top: var(--primary) solid 1px;
+}
+
+.content li:nth-child(2n) {
+    background-color: rgb(221, 240, 247);
+}
+
+.content li:first-child {
+    border: none;
 }
 
 /* Form style */
