@@ -30,7 +30,7 @@ export default class Project {
     }
 
     removeTask(t) {
-        const index = tasks.findIndex(task => task == t)
+        const index = this.tasks.findIndex(task => task.getTitle() == t.title)
         this.tasks.splice(index, 1)
     }
 }

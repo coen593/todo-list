@@ -16,7 +16,7 @@ export default class List {
     }
 
     getProject(p) {
-        return this.projects.find(project => project.title == p)
+        return this.projects.find(project => project.getProject() == p)
     }
 
     removeProject(p) {
