@@ -1,4 +1,4 @@
-import { toggleItemActive, toggleTaskCheck } from '../modules/UI.js'
+import { toggleItemActive, toggleTaskCheck, deleteTask, showEditTaskForm } from '../modules/UI.js'
 const makeElement = require('../helpers/makeElement.js')
 
 export function tasksShown(tasks) {
@@ -21,14 +21,14 @@ export function tasksShown(tasks) {
         const date = makeElement('span', ['item-date'], task.dueDate)
         taskRight.appendChild(date)
 
+        const edit = makeElement('img', ['item-edit'], null, {'src': './static/edit.svg', 'alt': `Edit ${task.title}`})
+        taskRight.appendChild(edit)
+
         const del = makeElement('img', ['item-delete'], null, {'src': './static/delete.svg', 'alt': `Delete ${task.title}`})
         taskRight.appendChild(del)
 
         const description = makeElement('p', ['item-description'], task.description)
-        taskBottom.appendChild(description)
-
-        const edit = makeElement('img', ['item-edit'], null, {'src': './static/edit.svg', 'alt': `Edit ${task.title}`})
-        taskBottom.appendChild(edit)
+        taskBottom.appendChild(description)       
 
         const priority = makeElement('span', ['item-priority'], `Priority: ${task.priority}`)
         taskBottom.appendChild(priority)
@@ -43,14 +43,23 @@ export function tasksShown(tasks) {
         list.appendChild(item)
 
         item.addEventListener('click', function() {toggleItemActive(this)})
-        check.addEventListener('click', () => {
+        check.addEventListener('click', e => {
+            e.stopPropagation()
             item.classList.toggle('done')
             toggleTaskCheck(task)
-            
         })
-        uncheck.addEventListener('click', function() {
+        uncheck.addEventListener('click', e => {
+            e.stopPropagation()
             item.classList.toggle('done')
             toggleTaskCheck(task)
+        })
+        del.addEventListener('click', e => {
+            e.stopPropagation()
+            deleteTask(task)
+        })
+        edit.addEventListener('click', e => {
+            e.stopPropagation()
+            showEditTaskForm(task)
         })
     }
     return list

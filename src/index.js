@@ -10,6 +10,6 @@ const initStorage = (() => {
 })()
 
 const initUI = (() => {
-    createTaskView('all')
+    createTaskView()
     showSidebarProjects()
 })()

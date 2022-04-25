@@ -11,5 +11,5 @@ export function taskHeader(type, filter) {
             header = `${filter.title} - Tasks`
         }
     }
-    return makeElement('h2', ['content-header'], header)
+    return makeElement('h2', ['content-header', type], header)
 }

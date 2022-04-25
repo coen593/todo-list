@@ -89,7 +89,7 @@ export default class Storage {
         const projects = Storage.getProjects()
         let p, t
         for (let i = 0; i < projects.length; i++) {
-            if (projects[i].title = task.project) {
+            if (projects[i].title == task.project) {
                 p = i
             }
         }
@@ -101,28 +101,18 @@ export default class Storage {
         return { t, p }
     }
 
-    static setTaskDone(doneTask) {
-        let list = Storage.getList()
-        // console.log
-        // const task = Storage.getTask(t)
-        // console.log(task)
-        // task.setDone()
-        // console.log(task)
-        // let project
-        // for (let p of list.projects) {
-        //     if (doneTask.project == p.title) {
-        //         project = p
-        //     }
-        // }
-        // let task
-        // for (let t of project.tasks) {
-        //     if (t.title == doneTask.title) {
-        //         task = doneTask
-        //     }
-        // }
-        
-        const { t, p } = Storage.getProjectTaskIndex(doneTask)
+    static setTaskDone(task) {
+        let list = Storage.getList()        
+        const { t, p } = Storage.getProjectTaskIndex(task)
         list.projects[p].tasks[t].setDone()
         Storage.saveList(list)        
+    }
+
+    static deleteTask(task) {
+        const list = Storage.getList()
+        const { t, p } = Storage.getProjectTaskIndex(task)
+        list.projects[p].tasks.splice(t, 1)
+
+        Storage.saveList(list)
     }
 }

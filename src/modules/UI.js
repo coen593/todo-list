@@ -3,6 +3,7 @@ import { header } from '../components/Header'
 import { sidebar } from '../components/Sidebar'
 import { contentSection } from '../components/ContentSection'
 import { newProjectForm } from '../components/NewProjectForm'
+import { editTaskForm } from '../components/EditTaskForm'
 import { taskHeader } from '../components/TaskHeader'
 import { tasksShown } from '../components/Tasks'
 import { projectList } from '../components/ProjectList'
@@ -52,9 +53,10 @@ const showSidebarProjects = () => {
     projectList(projects, list)
 }
 
-const createTaskView = (type, filter) => {
+const createTaskView = (filter) => {
     const content = document.querySelector('.content')
     emptyElement(content)
+    const type = getActiveView()
     const header = taskHeader(type, filter)
     const tasks = tasksShown(Storage.showTasks(type, filter))
     content.appendChild(header)
@@ -63,8 +65,35 @@ const createTaskView = (type, filter) => {
 
 const toggleItemActive = item => item.classList.toggle('active')
 
+const getActiveView = () => {
+    const viewHeader = document.querySelector('.content-header')
+    if (!viewHeader || viewHeader.classList.contains('all')) {
+        return 'all'
+    }
+    if (viewHeader.classList.contains('p')) {
+        return 'p'
+    }
+}
+
 const toggleTaskCheck = task => {
     Storage.setTaskDone(task)
+}
+
+const deleteTask = task => {
+    Storage.deleteTask(task)
+    if (getActiveView() == 'all') {
+        createTaskView('all')
+    } else if (getActiveView() == 'p') {
+        createTaskView('p', task.project)
+    }
+}
+
+const showEditTaskForm = task => {
+    const container = document.querySelector('.container')
+    if (!container.classList.contains('hasForm')){
+        container.classList.add('hasForm')
+        container.appendChild(editTaskForm(task))
+    }
 }
 
 export {
@@ -74,5 +103,7 @@ export {
     createTaskView, 
     showSidebarProjects,
     toggleItemActive,
-    toggleTaskCheck
+    toggleTaskCheck,
+    deleteTask,
+    showEditTaskForm
 }
