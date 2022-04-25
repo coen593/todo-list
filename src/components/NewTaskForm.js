@@ -1,4 +1,4 @@
-import { closeForm, createTaskView } from '../modules/UI'
+import { closeForm, createTaskView, showSidebarProjects } from '../modules/UI'
 import Storage from '../modules/Storage'
 const makeElement = require('../helpers/makeElement.js')
 
@@ -98,6 +98,7 @@ export function newTaskForm() {
             message.style.visibility='visible'
         } else {
             closeForm()
+            showSidebarProjects()
             if (data.project == '_no-project') {
                 createTaskView()
             } else {

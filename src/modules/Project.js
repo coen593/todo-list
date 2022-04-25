@@ -21,7 +21,6 @@ export default class Project {
     }
 
     getTask(t) {
-        console.log('x')
         return this.tasks.find(task => task == t)
     }
 
