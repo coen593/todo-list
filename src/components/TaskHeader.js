@@ -8,7 +8,7 @@ export function taskHeader(type, filter) {
         header = makeElement('h2', ['content-header', type], 'All tasks')
     } else if (type == 'p') {
         if (filter.title == '_no-project') {
-            header = makeElement('h2', ['content-header', type], 'All tasks')
+            header = makeElement('h2', ['content-header', type], 'Miscellaneous tasks')
         } else {
             header = makeElement('div',['header-div'])
             const headerText = makeElement('h2', ['content-header', type], `${filter.title} - Tasks`)
