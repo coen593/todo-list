@@ -112,7 +112,11 @@ export default class Storage {
         const list = Storage.getList()
         const { t, p } = Storage.getProjectTaskIndex(task)
         list.projects[p].tasks.splice(t, 1)
-
         Storage.saveList(list)
+    }
+
+    static editTask(newTask, oldTask) {
+        Storage.deleteTask(oldTask)
+        Storage.addTask(newTask)
     }
 }

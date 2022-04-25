@@ -103,7 +103,7 @@ export function editTaskForm(task) {
     form.addEventListener('submit', (e) => {
         e.preventDefault()
         const data = Object.fromEntries(new FormData(e.target))
-        if (Storage.editTask(data) == 0) {
+        if (Storage.editTask(data, task) == 0) {
             message.style.visibility='visible'
         } else {
             closeForm()
