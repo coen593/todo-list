@@ -5,7 +5,6 @@ export function tasksShown(tasks) {
     tasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate) || a.priority - b.priority)
     const list = makeElement('ul',['task-list'])
     for (let task of tasks) {
-        console.log(new Date(task.dueDate))
         const item = makeElement('li', ['task-item'])
         const taskLeft = makeElement('div', ['task-left'])
         const taskRight = makeElement('div', ['task-right'])
