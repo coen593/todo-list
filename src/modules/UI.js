@@ -96,6 +96,12 @@ const showEditTaskForm = task => {
     }
 }
 
+const deleteProject = project => {
+    Storage.deleteProject(project)
+    createTaskView('all')
+    showSidebarProjects()
+}
+
 export {
     showTaskForm, 
     showProjectForm, 
@@ -105,5 +111,6 @@ export {
     toggleItemActive,
     toggleTaskCheck,
     deleteTask,
-    showEditTaskForm
+    showEditTaskForm,
+    deleteProject
 }

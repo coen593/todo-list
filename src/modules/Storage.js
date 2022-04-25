@@ -119,4 +119,10 @@ export default class Storage {
         Storage.deleteTask(oldTask)
         Storage.addTask(newTask)
     }
+
+    static deleteProject(project) {
+        const list = Storage.getList()
+        list.deleteProject(project)
+        Storage.saveList(list)
+    }
 }
