@@ -53,10 +53,10 @@ const showSidebarProjects = () => {
     projectList(projects, list)
 }
 
-const createTaskView = (filter) => {
+const createTaskView = (type, filter) => {
     const content = document.querySelector('.content')
+    if (!type) type = getActiveView()
     emptyElement(content)
-    const type = getActiveView()
     const header = taskHeader(type, filter)
     const tasks = tasksShown(Storage.showTasks(type, filter))
     content.appendChild(header)
@@ -67,7 +67,7 @@ const toggleItemActive = item => item.classList.toggle('active')
 
 const getActiveView = () => {
     const viewHeader = document.querySelector('.content-header')
-    if (!viewHeader || viewHeader.classList.contains('all')) {
+    if (viewHeader.classList.contains('all')) {
         return 'all'
     }
     if (viewHeader.classList.contains('p')) {

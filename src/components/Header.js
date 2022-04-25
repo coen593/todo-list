@@ -6,7 +6,7 @@ export function header() {
 
     const logo = makeElement('h1', ['header-logo'], 'Do-it-all')
     h.appendChild(logo)
-    logo.addEventListener('click', () => createTaskView())
+    logo.addEventListener('click', () => createTaskView('all'))
 
     return h
 }

@@ -2,10 +2,10 @@ import { closeForm, createTaskView } from '../modules/UI'
 import Storage from '../modules/Storage'
 const makeElement = require('../helpers/makeElement.js')
 
-export function newTaskForm() {
+export function editTaskForm(task) {
     const form = makeElement('form',['new-task-form'])
 
-    const legend = makeElement('legend',null,'Please add your new task!')
+    const legend = makeElement('legend',null,`Edit task: ${task.title}`)
     form.appendChild(legend)
 
     const closeIcon = new Image()
@@ -20,7 +20,8 @@ export function newTaskForm() {
         'id': 'new-task-name',
         'required': 'true',
         'type': 'text',
-        'name': 'name'
+        'name': 'name',
+        'value': task.title
     })
     form.appendChild(nameLabel)
     form.appendChild(name)
@@ -28,7 +29,7 @@ export function newTaskForm() {
     const descriptionLabel = makeElement('label',null,'Description',{
         'for': 'new-task-description'
     })
-    const description = makeElement('textarea', ['new-task-input'], null, {
+    const description = makeElement('textarea', ['new-task-input'], task.description, {
         'id': 'new-task-description',
         'rows': '6',
         'name': 'description'
@@ -42,7 +43,8 @@ export function newTaskForm() {
     const date = makeElement('input', ['new-task-input'], null, {
         'id': 'new-task-date',
         'type': 'date',
-        'name': 'date'
+        'name': 'date',
+        'value': task.dueDate
     })
     form.appendChild(dateLabel)
     form.appendChild(date)
@@ -52,7 +54,8 @@ export function newTaskForm() {
     })
     const project = makeElement('select', ['new-task-input'], null, {
         'id': 'new-task-project',
-        'name': 'project'
+        'name': 'project',
+        'value': task.project
     })
     const projects = Storage.getProjects()
     const option = makeElement('option', null, '-- no project --', {'value': '_no-project'})
@@ -60,6 +63,9 @@ export function newTaskForm() {
     for (let p of projects) {
         if (p.title !== '_no-project') {
             const option = makeElement('option', null, p.title, {'value': p.title})
+            if (p.title == task.project) {
+                option.setAttribute('selected','selected')
+            }
             project.appendChild(option)
         }
     }
@@ -75,6 +81,9 @@ export function newTaskForm() {
     })
     for (let i of [1,2,3]) {
         const option = makeElement('option', null, i, {'value': i.toString()})
+        if (i == task.priority) {
+            option.setAttribute('selected','selected')
+        }
         priority.appendChild(option)
     }
     form.appendChild(priorityLabel)
@@ -94,12 +103,12 @@ export function newTaskForm() {
     form.addEventListener('submit', (e) => {
         e.preventDefault()
         const data = Object.fromEntries(new FormData(e.target))
-        if (Storage.addTask(data) == 0) {
+        if (Storage.editTask(data) == 0) {
             message.style.visibility='visible'
         } else {
             closeForm()
             if (data.project == '_no-project') {
-                createTaskView()
+                createTaskView(null)
             } else {
                 createTaskView(null, Storage.getProject(data.project))
             }
