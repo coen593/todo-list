@@ -21,7 +21,7 @@ export default class Project {
     }
 
     getTask(t) {
-        return this.tasks.find(task => task == t)
+        return this.tasks.find(task => task.getTitle() == t.title)
     }
 
     addTask(task) {

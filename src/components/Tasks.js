@@ -14,6 +14,7 @@ export function tasksShown(tasks) {
         const uncheck = makeElement('img',['item-uncheck'],null,{'src': './static/unchecked.svg', 'alt': `Checkbox ${task.title}`})
         taskLeft.appendChild(check)
         taskLeft.appendChild(uncheck)
+        if (task.done) item.classList.add('done')
 
         const title = makeElement('span', ['item-text'], task.title)
         taskLeft.appendChild(title)
