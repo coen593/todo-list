@@ -5,7 +5,7 @@ const makeElement = require('../helpers/makeElement.js')
 export function editTaskForm(task) {
     const form = makeElement('form',['new-task-form'])
 
-    const legend = makeElement('legend',null,`Edit task: ${task.title}`)
+    const legend = makeElement('legend',null,`Edit ${task.title}`)
     form.appendChild(legend)
 
     const closeIcon = new Image()
@@ -20,11 +20,18 @@ export function editTaskForm(task) {
         'id': 'new-task-name',
         'required': 'true',
         'type': 'text',
-        'name': 'name',
-        'value': task.title
+        'name': 'title',
+        'value': task.title,
+        'autocomplete': 'off'
     })
     form.appendChild(nameLabel)
     form.appendChild(name)
+
+    const message = makeElement('p', ['name-taken','error-message'], 'This task name is already taken!', {
+        'id': 'task-name-error',
+    })
+    message.style.display='none'
+    form.appendChild(message)
 
     const descriptionLabel = makeElement('label',null,'Description',{
         'for': 'new-task-description'
@@ -89,12 +96,6 @@ export function editTaskForm(task) {
     form.appendChild(priorityLabel)
     form.appendChild(priority)
 
-    const message = makeElement('p', ['name-taken','error-message'], 'This task name is already taken!', {
-        'id': 'task-name-error',
-    })
-    message.style.visibility='hidden'
-    form.appendChild(message)
-
     const button = makeElement('button', ['btn', 'new-task-btn'], 'Add Task', {
         'type': 'submit',
         'id': 'new-task-btn'
@@ -104,7 +105,7 @@ export function editTaskForm(task) {
         e.preventDefault()
         const data = Object.fromEntries(new FormData(e.target))
         if (Storage.editTask(data, task) == 0) {
-            message.style.visibility='visible'
+            message.style.display='block'
         } else {
             closeForm()
             if (data.project == '_no-project') {

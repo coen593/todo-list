@@ -58,14 +58,21 @@ export default class Storage {
         return 1
     }
 
-    static addTask(t) {
+    static checkTaskExists(t) {
         const list = Storage.getList()
         const project = list.getProject(t.project)
         const tasks = project.getTasks()
         for (let task of tasks) {
-            if (task.title == t.name) return 0
+            if (task.title == t.title) return true
         }
-        const task = new Task(t.name, t.description, t.date, t.priority, t.project)
+        return false
+    }
+
+    static addTask(t) {
+        if (this.checkTaskExists(t)) return 0
+        const list = Storage.getList()
+        const project = list.getProject(t.project)
+        const task = new Task(t.title, t.description, t.date, t.priority, t.project)
         project.addTask(task)
         Storage.saveList(list)
         return 1
@@ -98,8 +105,13 @@ export default class Storage {
     }
 
     static editTask(newTask, oldTask) {
+        if (newTask.title !== oldTask.title || newTask.project !== oldTask.project) {
+            console.log(newTask.title, oldTask.title)
+            if (Storage.checkTaskExists(newTask)) return 0
+        }
         Storage.deleteTask(oldTask)
         Storage.addTask(newTask)
+        return 1
     }
 
     static deleteProject(project) {

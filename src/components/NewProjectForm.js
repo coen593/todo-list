@@ -5,7 +5,7 @@ const makeElement = require('../helpers/makeElement.js')
 export function newProjectForm() {
     const form = makeElement('form',['new-project-form'])
 
-    const legend = makeElement('legend',null,'Please add your new project!')
+    const legend = makeElement('legend',null,'Add your new project')
     form.appendChild(legend)
 
     const closeIcon = new Image()
@@ -20,7 +20,8 @@ export function newProjectForm() {
         'id': 'new-task-name',
         'required': 'true',
         'type': 'text',
-        'name': 'name'
+        'name': 'title',
+        'autocomplete': 'off'
     })
     form.appendChild(nameLabel)
     form.appendChild(name)
@@ -28,7 +29,7 @@ export function newProjectForm() {
     const message = makeElement('p', ['name-taken','error-message'], 'This project name is already taken!', {
         'id': 'project-name-error',
     })
-    message.style.visibility='hidden'
+    message.style.display='none'
     form.appendChild(message)
 
     const button = makeElement('button', ['btn', 'new-task-btn'], 'Add Project', {
@@ -39,7 +40,7 @@ export function newProjectForm() {
     button.addEventListener('click', (e) => {
         e.preventDefault()
         if (Storage.addProject(name.value) == 0) {
-            message.style.visibility='visible'
+            message.style.display='block'
         } else {
             closeForm()
             showSidebarProjects()
