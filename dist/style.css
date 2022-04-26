@@ -48,13 +48,16 @@ table {
 }
 
 /* Non Meyer general styling below */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 :root {
     font-size: 18px;
-    --primary: #354985;
-    --primary-alt: #2C4696;
-    --clashing: #f0698B;
-    --secondary: #FADB7F;
-    --tertiary: #ADA076;
+    font-family: 'Roboto', sans-serif;
+    --primary: #1b998b;
+    --secondary-light: #f8f1ff;
+    --secondary-dark: #656176;
+    --secondary: #decdf5;
+    --tertiary: #534d56;
 }
 
 /* General main layout */
@@ -66,6 +69,24 @@ html, body {
     grid-template-columns: 25% 75%;
     grid-template-rows: 6em auto;
     height: 100vh;
+}
+
+button {
+    padding: 5px;
+    width: 120px;
+    font-size: 0.9em;
+    align-self: center;
+    background-color: var(--primary);
+    border: none;
+    color: white;
+    margin: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: scale(0.97);
 }
 
 /* Nav layout */
@@ -80,6 +101,9 @@ header .header-logo {
     color: var(--primary);
     margin: auto;
     margin-left: 20px;
+    font-style: italic;
+    cursor: pointer;
+    font-family: 'Water Brush', sans-serif;
 }
 
 /* Sidebar style */
@@ -87,6 +111,20 @@ header .header-logo {
     display: flex;
     flex-direction: column;
     background-color: var(--tertiary);
+    color: white;
+    padding: 20px;
+}
+
+.sidebar h3 {
+    font-size: 1.5em;
+}
+
+.sidebar li {
+    cursor: pointer;
+}
+
+.sidebar li:hover {
+    color: var(--secondary)
 }
 
 /* Content style */
@@ -94,9 +132,18 @@ header .header-logo {
     padding: 20px;
 }
 
+.content .header-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.delete-project-button {
+    background-color: rgb(230, 0, 0);
+}
+
 .content h2 {
     font-size: 1.8em;
-    margin-bottom: 20px;
 }
 
 .task-item {

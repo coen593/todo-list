@@ -2,7 +2,7 @@ import { closeForm, createTaskView, showSidebarProjects } from '../modules/UI'
 import Storage from '../modules/Storage'
 const makeElement = require('../helpers/makeElement.js')
 
-export function newTaskForm() {
+export function newTaskForm(currProject) {
     const form = makeElement('form',['new-task-form'])
 
     const legend = makeElement('legend',null,'Please add your new task!')
@@ -60,6 +60,9 @@ export function newTaskForm() {
     for (let p of projects) {
         if (p.title !== '_no-project') {
             const option = makeElement('option', null, p.title, {'value': p.title})
+            if (currProject && p.title == currProject) {
+                option.setAttribute('selected','selected')
+            }
             project.appendChild(option)
         }
     }

@@ -3,11 +3,6 @@ const makeElement = require('../helpers/makeElement.js')
 
 export function sidebar() {
     const side = makeElement('div',['sidebar'])
-    const addProjectButton = makeElement('button',['btn','add-project'],'Add Project', {
-        'id': 'add-project'
-    })
-    side.appendChild(addProjectButton)
-    addProjectButton.addEventListener('click', () => showProjectForm())
 
     const addTaskButton = makeElement('button',['btn','add-task'],'Add Task', {
         'id': 'add-task'
@@ -19,6 +14,12 @@ export function sidebar() {
     side.appendChild(projectHeader)
     const projectList = makeElement('ul', ['project-list'])
     side.appendChild(projectList)
+
+    const addProjectButton = makeElement('button',['btn','add-project'],'Add Project', {
+        'id': 'add-project'
+    })
+    side.appendChild(addProjectButton)
+    addProjectButton.addEventListener('click', () => showProjectForm())
 
     return side
 }

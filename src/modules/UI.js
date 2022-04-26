@@ -17,11 +17,11 @@ const init = (() => {
     container.appendChild(contentSection())
 })()
 
-const showTaskForm = () => {
+const showTaskForm = (currProject) => {
     const container = document.querySelector('.container')
     if (!container.classList.contains('hasForm')){
         container.classList.add('hasForm')
-        container.appendChild(newTaskForm())
+        container.appendChild(newTaskForm(currProject))
     }
 }
 
