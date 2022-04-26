@@ -146,14 +146,36 @@ header .header-logo {
     font-size: 1.8em;
 }
 
+/* Tasks styling */
 .task-item {
-    padding: 5px 0;
-    border-top: var(--primary) solid 1px;
+    padding: 5px 10px;
+    margin: 5px;
     display: grid;
     grid-template-columns: auto 120px;
     justify-content: space-between;
     align-items: center;
     transition: 100ms;
+    border-radius: 50px;
+}
+
+.task-item.done {
+    opacity: 0.5;
+}
+.task-item.done .item-text {
+    text-decoration: line-through;
+}
+
+.task-item.prio1 {
+    border: solid 2px red;
+    box-shadow: 0 0 3px red;
+}
+.task-item.prio2 {
+    border: solid 2px rgb(255, 153, 0);
+    box-shadow: 0 0 3px rgb(255, 153, 0);
+}
+.task-item.prio3 {
+    border: solid 2px rgb(9, 175, 3);
+    box-shadow: 0 0 3px rgb(9, 175, 3);
 }
 
 .task-item .item-uncheck,
@@ -210,15 +232,7 @@ header .header-logo {
     text-align: end;
 }
 
-.content li:nth-child(2n+1) {
-    background-color: rgb(236, 250, 255);
-}
-
-.content li:first-child {
-    border: none;
-}
-
-.content li img {
+.task-item img {
     height: 20px;
 }
 
