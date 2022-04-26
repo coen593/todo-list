@@ -84,7 +84,6 @@ const deleteTask = task => {
     if (getActiveView() == 'all') {
         createTaskView('all')
     } else if (getActiveView() == 'p') {
-        console.log(task.project, 'x')
         createTaskView('p', task.project)
     }
     showSidebarProjects()
