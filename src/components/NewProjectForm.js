@@ -16,7 +16,7 @@ export function newProjectForm() {
     const nameLabel = makeElement('label',null,'Project Name',{
         'for': 'new-project-name'
     })
-    const name = makeElement('input', ['new-task-input'], null, {
+    const name = makeElement('input', ['new-task-input', 'form-input'], null, {
         'id': 'new-task-name',
         'required': 'true',
         'type': 'text',

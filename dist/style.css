@@ -56,8 +56,8 @@ table {
     --primary: #1b998b;
     --secondary-light: #f8f1ff;
     --secondary-dark: #656176;
-    --secondary: #decdf5;
-    --tertiary: #534d56;
+    --tertiary: #decdf5;
+    --secondary: #534d56;
 }
 
 /* General main layout */
@@ -74,6 +74,7 @@ html, body {
 button {
     padding: 5px;
     width: 120px;
+    height: 2.2em;
     font-size: 0.9em;
     align-self: center;
     background-color: var(--primary);
@@ -83,7 +84,9 @@ button {
     border-radius: 15px;
     cursor: pointer;
 }
-
+button:focus {
+    outline: 2px darkgray dotted;
+}
 button:hover {
     opacity: 0.9;
     transform: scale(0.97);
@@ -110,9 +113,10 @@ header .header-logo {
 .sidebar {
     display: flex;
     flex-direction: column;
-    background-color: var(--tertiary);
-    color: white;
+    background-color: var(--secondary-light);
+    color: black;;
     padding: 20px;
+    box-shadow: 2px 2px 5px var(--tertiary);
 }
 
 .sidebar h3 {
@@ -124,7 +128,8 @@ header .header-logo {
 }
 
 .sidebar li:hover {
-    color: var(--secondary)
+    transform: scale(1.02);
+    filter: drop-shadow(0 0 10px var(--secondary-dark));
 }
 
 /* Content style */
@@ -245,7 +250,7 @@ form {
     transform: translate(-50%,-50%);
     padding: 20px;
     display: grid;
-    grid-template-columns: 35% 45% 20%;
+    grid-template-columns: 37% 48% 15%;
     justify-content: center;
     column-gap: 10px;
     align-items: center;
@@ -253,6 +258,7 @@ form {
     z-index: 2;
     min-width: 300px;
     max-width: 700px;
+    border-radius: 25px;
 }
 
 form legend {
@@ -271,6 +277,27 @@ form img {
 
 form * {
     margin-bottom: 10px;
+}
+
+.form-input {
+    border: none;
+    background-color: white;;
+    border: 1px solid lightgrey;
+    border-radius: 20px;
+    padding-left: 10px;
+}
+input.form-input,
+select.form-input {
+    height: 30px;
+}
+
+.form-input:hover {
+    transform: scale(1.01);
+    box-shadow: 0 1px 3px black;
+}
+
+textarea.form-input {
+    padding-top: 10px;
 }
 
 form input[type='text'],
@@ -299,6 +326,7 @@ form button {
 
 form label {
     font-size: 0.9em;
+    margin-bottom: 3px;
 }
 
 #task-name-error,

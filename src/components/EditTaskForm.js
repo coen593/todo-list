@@ -16,7 +16,7 @@ export function editTaskForm(task) {
     const nameLabel = makeElement('label',null,'Task Name',{
         'for': 'new-task-name'
     })
-    const name = makeElement('input', ['new-task-input'], null, {
+    const name = makeElement('input', ['new-task-input', 'form-input'], null, {
         'id': 'new-task-name',
         'required': 'true',
         'type': 'text',
@@ -36,7 +36,7 @@ export function editTaskForm(task) {
     const descriptionLabel = makeElement('label',null,'Description',{
         'for': 'new-task-description'
     })
-    const description = makeElement('textarea', ['new-task-input'], task.description, {
+    const description = makeElement('textarea', ['new-task-input', 'form-input'], task.description, {
         'id': 'new-task-description',
         'rows': '6',
         'name': 'description'
@@ -47,7 +47,7 @@ export function editTaskForm(task) {
     const dateLabel = makeElement('label',null,'Due Date',{
         'for': 'new-task-date'
     })
-    const date = makeElement('input', ['new-task-input'], null, {
+    const date = makeElement('input', ['new-task-input', 'form-input'], null, {
         'id': 'new-task-date',
         'type': 'date',
         'name': 'date',
@@ -59,7 +59,7 @@ export function editTaskForm(task) {
     const projectLabel = makeElement('label',null,'Project', {
         'for': 'Project'
     })
-    const project = makeElement('select', ['new-task-input'], null, {
+    const project = makeElement('select', ['new-task-input', 'form-input'], null, {
         'id': 'new-task-project',
         'name': 'project',
         'value': task.project
@@ -82,7 +82,7 @@ export function editTaskForm(task) {
     const priorityLabel = makeElement('label',null,'Priority',{
         'for': 'new-task-priority'
     })
-    const priority = makeElement('select', ['new-task-input'], null, {
+    const priority = makeElement('select', ['new-task-input', 'form-input'], null, {
         'id': 'new-task-priority',
         'name': 'priority'
     })
