@@ -32,6 +32,7 @@ export function tasksShown(tasks) {
 
         const priority = makeElement('span', ['item-priority'], `Priority: ${task.priority}`)
         taskBottom.appendChild(priority)
+        item.classList.add(`prio${task.priority}`)
         
         const projectText = task.project == '_no-project' ? '' :`Project: ${task.project}`
         const project = makeElement('span', ['item-project'], projectText)

@@ -20,7 +20,8 @@ export function newTaskForm(currProject) {
         'id': 'new-task-name',
         'required': 'true',
         'type': 'text',
-        'name': 'name'
+        'name': 'name',
+        'autocomplete': 'off'
     })
     form.appendChild(nameLabel)
     form.appendChild(name)
