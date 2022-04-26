@@ -104,7 +104,7 @@ export function newTaskForm(currProject) {
             closeForm()
             showSidebarProjects()
             if (data.project == '_no-project') {
-                createTaskView()
+                createTaskView('all')
             } else {
                 createTaskView(null, Storage.getProject(data.project))
             }

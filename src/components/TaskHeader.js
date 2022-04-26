@@ -7,6 +7,7 @@ export function taskHeader(type, filter) {
     if (type == 'all') {
         headerText = makeElement('h2', ['content-header', type], 'All tasks')
     } else if (type == 'p') {
+        console.log(filter)
         if (filter.title == '_no-project') {
             headerText = makeElement('h2', ['content-header', type], 'Miscellaneous tasks')
         } else {
@@ -20,8 +21,7 @@ export function taskHeader(type, filter) {
     const addTaskButton = makeElement('button',['btn','add-task'],'Add Task', {'id': 'add-task'})
     buttonDiv.appendChild(addTaskButton)
     if (type == 'p') {
-        addTaskButton.addEventListener('click', () => {
-            showTaskForm(filter.title)})
+        addTaskButton.addEventListener('click', () => showTaskForm(filter.title))
     } else {
         addTaskButton.addEventListener('click', () => showTaskForm())
     } 
