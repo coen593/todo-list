@@ -25,7 +25,7 @@ export default class List {
     }
 
     deleteProject(p) {
-        const projectToDelete = this.projects.find(project => project.getProject() == p.title)
+        const projectToDelete = this.projects.find(project => project.getProject() == p)
         this.projects.splice(this.projects.indexOf(projectToDelete), 1)
     }
 }

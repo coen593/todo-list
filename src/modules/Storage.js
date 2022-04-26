@@ -79,10 +79,12 @@ export default class Storage {
     }
 
     static showTasks(type, filter) {
-        const list = Storage.getList()
+        if (typeof filter == 'string') {
+            filter = Storage.getProject(filter)
+        }
         let tasks = []
         if (type == 'all') {
-            const projects = this.getProjects()
+            const projects = Storage.getProjects()
             projects.forEach(project => {
                 tasks = [...tasks,...project.getTasks()]
             })
@@ -106,7 +108,6 @@ export default class Storage {
 
     static editTask(newTask, oldTask) {
         if (newTask.title !== oldTask.title || newTask.project !== oldTask.project) {
-            console.log(newTask.title, oldTask.title)
             if (Storage.checkTaskExists(newTask)) return 0
         }
         Storage.deleteTask(oldTask)

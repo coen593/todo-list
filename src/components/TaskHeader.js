@@ -7,11 +7,11 @@ export function taskHeader(type, filter) {
     if (type == 'all') {
         headerText = makeElement('h2', ['content-header', type], 'All tasks')
     } else if (type == 'p') {
-        console.log(filter)
-        if (filter.title == '_no-project') {
+        if (typeof filter !== 'string') filter = filter.title
+        if (filter == '_no-project') {
             headerText = makeElement('h2', ['content-header', type], 'Miscellaneous tasks')
         } else {
-            headerText = makeElement('h2', ['content-header', type], `${filter.title} - Tasks`)
+            headerText = makeElement('h2', ['content-header', type], `${filter} - Tasks`)
         }
     }
     header.appendChild(headerText)
@@ -21,12 +21,12 @@ export function taskHeader(type, filter) {
     const addTaskButton = makeElement('button',['btn','add-task'],'Add Task', {'id': 'add-task'})
     buttonDiv.appendChild(addTaskButton)
     if (type == 'p') {
-        addTaskButton.addEventListener('click', () => showTaskForm(filter.title))
+        addTaskButton.addEventListener('click', () => showTaskForm(filter))
     } else {
         addTaskButton.addEventListener('click', () => showTaskForm())
     } 
     
-    if (type == 'p' && filter.title != '_no-project') {
+    if (type == 'p' && filter != '_no-project') {
         const delButton = makeElement('button', ['delete-project-button', '.btn'], 'Delete project')
         buttonDiv.appendChild(delButton)
         delButton.addEventListener('click', () => deleteProject(filter))
