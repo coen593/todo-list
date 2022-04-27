@@ -291,6 +291,10 @@ header .header-logo {
     transform: scale(1.02);
 }
 
+.item-project {
+    cursor: pointer;
+}
+
 /* Form style */
 form {
     position: absolute;
@@ -388,6 +392,10 @@ form label {
 }
 
 @media screen and (max-width: 650px) {
+    .container {
+        grid-template-columns: auto;
+    }
+
     .hamburger.open-menu,
     .hamburger.close-menu.show {
         display: block;

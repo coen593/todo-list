@@ -6,7 +6,7 @@ export function projectList(projects, projectList) {
     let misc
     for (let project of projects) {
         if (project.title !== '_no-project') {
-            const p = makeElement('li',['project-link'], project.title)
+            const p = makeElement('li', ['project-link'], project.title, { 'tabindex': '0' })
             projectList.appendChild(p)
             p.addEventListener('click', () => createTaskView('p', project))
         } else {
@@ -14,7 +14,7 @@ export function projectList(projects, projectList) {
         }
     }
     projectList.appendChild(makeElement('hr'))
-    const miscProject = makeElement('li', ['project-link','misc-project-link'], 'Miscellaneous tasks')
+    const miscProject = makeElement('li', ['project-link', 'misc-project-link'], 'Miscellaneous tasks', { 'tabindex': '0' })
     projectList.appendChild(miscProject)
     miscProject.addEventListener('click', () => createTaskView('p', misc))
 
