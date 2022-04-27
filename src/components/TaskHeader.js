@@ -3,6 +3,7 @@ const makeElement = require('../helpers/makeElement.js')
 
 export function taskHeader(type, filter) {
     const header = makeElement('div',['header-div'])
+
     let headerText
     if (type == 'all') {
         headerText = makeElement('h2', ['content-header', type], 'All tasks')

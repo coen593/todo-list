@@ -103,6 +103,14 @@ const deleteProject = project => {
     showSidebarProjects()
 }
 
+const toggleSidebar = () => {
+    const buttons = document.querySelectorAll('.hamburger')
+    const menu = document.querySelector('.sidebar')
+
+    buttons.forEach(button => button.classList.toggle('show'))
+    menu.classList.toggle('show')
+}
+
 export {
     showTaskForm, 
     showProjectForm, 
@@ -113,5 +121,6 @@ export {
     toggleTaskCheck,
     deleteTask,
     showEditTaskForm,
-    deleteProject
+    deleteProject,
+    toggleSidebar
 }
