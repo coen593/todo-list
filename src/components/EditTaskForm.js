@@ -39,7 +39,8 @@ export function editTaskForm(task) {
     const description = makeElement('textarea', ['new-task-input', 'form-input'], task.description, {
         'id': 'new-task-description',
         'rows': '6',
-        'name': 'description'
+        'name': 'description',
+        'maxlength': '500'
     })
     form.appendChild(descriptionLabel)
     form.appendChild(description)

@@ -231,7 +231,7 @@ header .header-logo {
 }
 
 .task-item:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
     transition: 300ms;
 }
 
@@ -256,7 +256,7 @@ header .header-logo {
 }
 
 .task-item.active .task-bottom {
-    max-height: 100px;
+    max-height: 200px;
     transition: 500ms ease-out;
 }
 
@@ -265,8 +265,6 @@ header .header-logo {
     grid-column: 1 / 2;
 }
 
-.task-bottom img,
-.task-bottom span,
 .task-bottom span {
     justify-self: end;
     text-align: end;
@@ -274,6 +272,23 @@ header .header-logo {
 
 .task-item img {
     height: 20px;
+    cursor: pointer;
+}
+
+.item-check:hover,
+.item-uncheck:hover {
+    filter: drop-shadow(1px 1px 5px green);
+    transform: scale(1.02);
+}
+
+.item-edit:hover {
+    filter: drop-shadow(1px 1px 5px blue);
+    transform: scale(1.02);
+}
+
+.item-delete:hover {
+    filter: drop-shadow(1px 1px 5px red);
+    transform: scale(1.02);
 }
 
 /* Form style */
@@ -372,7 +387,7 @@ form label {
     color: rgb(230, 0, 0);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 650px) {
     .hamburger.open-menu,
     .hamburger.close-menu.show {
         display: block;
