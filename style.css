@@ -187,7 +187,7 @@ header .header-logo {
     padding: 5px 10px;
     margin: 5px;
     display: grid;
-    grid-template-columns: auto 120px;
+    grid-template-columns: auto 150px;
     justify-content: space-between;
     align-items: center;
     transition: 100ms;
