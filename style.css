@@ -310,8 +310,9 @@ form {
     background-color: var(--secondary-light);
     z-index: 2;
     min-width: 300px;
-    max-width: 700px;
+    max-width: 70%;
     border-radius: 25px;
+    border: 2px solid var(--secondary)
 }
 
 form legend {
