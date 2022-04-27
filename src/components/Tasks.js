@@ -1,4 +1,5 @@
 import { toggleItemActive, toggleTaskCheck, deleteTask, showEditTaskForm, createTaskView } from '../modules/UI.js'
+import { formatDistanceToNow } from 'date-fns'
 const makeElement = require('../helpers/makeElement.js')
 
 export function tasksShown(tasks) {
@@ -18,9 +19,10 @@ export function tasksShown(tasks) {
 
         const title = makeElement('span', ['item-text'], task.title)
         taskLeft.appendChild(title)
-
-        const date = makeElement('span', ['item-date'], task.dueDate)
-        taskRight.appendChild(date)
+        if (task.dueDate) {
+            const date = makeElement('span', ['item-date'], formatDistanceToNow(new Date(task.dueDate), { addSuffix: true }))
+            taskRight.appendChild(date)
+        }
 
         const edit = makeElement('img', ['item-edit'], null, { 'tabindex': '0', 'src': './static/edit.svg', 'alt': `Edit ${task.title}` })
         taskRight.appendChild(edit)
