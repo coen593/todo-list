@@ -177,6 +177,15 @@ header .header-logo {
     filter: drop-shadow(0 0 10px var(--secondary-dark));
 }
 
+.project-amount {
+    color:white;
+    background-color: var(--primary);
+    margin-left: 7px;
+    padding: 5px;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
 /* Content style */
 .content {
     padding: 20px;
